@@ -9,10 +9,11 @@ on:
       - main
 env:
   first-env: Hello World
-  FIRST_SECRET: "${{ secrets.FIRST_SECRET }}"
 jobs:
   first-job:
+    environment: dev
     env: 
+      FIRST_SECRET: "${{ secrets.TestVariable }}"
       second-env: Goodbye
     runs-on: ubuntu-latest
     steps:
@@ -24,5 +25,3 @@ jobs:
         run: echo "${{ env.second-env }}"
       - name: Print GitHub Env
         run: echo "${{ env.FIRST_SECRET }}"
-      - name: Print GitHub Env
-        run: echo "${{ secrets.FIRST_SECRET }}"
