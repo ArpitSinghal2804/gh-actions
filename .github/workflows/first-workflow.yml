@@ -11,7 +11,7 @@ env:
   first-env: Hello World
 jobs:
   first-job:
-    environment: dev
+    environment: test
     env: 
       FIRST_SECRET: "${{ vars.TESTVARIABLE }}"
       second-env: Goodbye
