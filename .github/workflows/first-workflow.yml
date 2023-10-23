@@ -13,7 +13,7 @@ jobs:
   first-job:
     environment: dev
     env: 
-      FIRST_SECRET: "${{ secrets.TestVariable }}"
+      FIRST_SECRET: "${{ vars.TESTVARIABLE }}"
       second-env: Goodbye
     runs-on: ubuntu-latest
     steps:
