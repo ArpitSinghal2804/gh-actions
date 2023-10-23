@@ -7,13 +7,17 @@ on:
   push:
     branches:
       - main
+env:
+  first-env: Hello World
 jobs:
   first-job:
+    env: 
+      second-env: Goodbye
     runs-on: ubuntu-latest
     steps:
       - name: Print Hello World
-        run: echo "Hello World"
+        run: echo "${{ env.first-env }}"
       - name: Output GitHub context
         run: echo "${{ toJson(github) }}"
       - name: Print Goodbye
-        run: echo "Goodbye"
+        run: echo "${{ env.second-env }}"
