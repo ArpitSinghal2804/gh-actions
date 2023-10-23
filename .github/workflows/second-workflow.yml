@@ -8,6 +8,11 @@ jobs:
         steps:
             - name: Get Code
               uses: actions/checkout@v4
+            - name: Cache Dependencies
+              uses: actions/cache@v3
+              with:
+                path: ~/.npm
+                key: deps-node-modules-${{ hashFiles('**.package-lock.json') }}
             - name: Install NodeJS
               uses: actions/setup-node@v3
               with:
@@ -31,6 +36,11 @@ jobs:
         steps:
             - name: Get Code
               uses: actions/checkout@v4
+            - name: Cache Dependencies
+              uses: actions/cache@v3
+              with:
+                path: ~/.npm
+                key: deps-node-modules-${{ hashFiles('**.package-lock.json') }}
             - name: Install NodeJS
               uses: actions/setup-node@v3
               with:
@@ -41,9 +51,9 @@ jobs:
               run: npm run build
             - name: Fetch Output
               run: echo "${{ needs.test.outputs.output-example }}"
-            - name: Download Artifact
-              uses: actions/download-artifact@v3
-              with:
-                name: dist
+            # - name: Download Artifact
+            #   uses: actions/download-artifact@v3
+            #   with:
+            #     name: dist
             - name: Deploy
               run: echo "Deploying Code"
