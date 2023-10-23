@@ -3,6 +3,8 @@ on: [push, workflow_dispatch]
 jobs:
     test:
         runs-on: ubuntu-latest
+        outputs:
+          output-example: ${{ steps.output-exam.outputs.output-file }}
         steps:
             - name: Get Code
               uses: actions/checkout@v4
@@ -14,6 +16,9 @@ jobs:
               run: npm ci  
             - name: Run test
               run: npm test
+            - name: Output
+              id: output-exam
+              run: find src/assests/images/*.png -type f -execdir echo 'output-file={}' >> $GITHUB_OUTPUT ";"
             - name: Artifacts
               uses: actions/upload-artifact@v3
               with:
@@ -34,6 +39,8 @@ jobs:
               run: npm ci
             - name: Build Project
               run: npm run build
+            - name: Fetch Output
+              run: echo "${{ needs.test.outputs.output-example }}"
             - name: Download Artifact
               uses: actions/download-artifact@v3
               with:
