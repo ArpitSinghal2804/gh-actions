@@ -18,7 +18,7 @@ jobs:
               run: npm test
             - name: Output
               id: output-exam
-              run: find src/assests/images/*.png -type f -execdir echo 'output-file={}' >> $GITHUB_OUTPUT ";"
+              run: find src/assets/images/*.png -type f -execdir echo 'output-file={}' >> $GITHUB_OUTPUT ";"
             - name: Artifacts
               uses: actions/upload-artifact@v3
               with:
