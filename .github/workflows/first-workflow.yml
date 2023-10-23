@@ -9,6 +9,7 @@ on:
       - main
 env:
   first-env: Hello World
+  FIRST_SECRET: "${{ secrets.FIRST_SECRET }}"
 jobs:
   first-job:
     env: 
@@ -21,3 +22,7 @@ jobs:
         run: echo "${{ toJson(github) }}"
       - name: Print Goodbye
         run: echo "${{ env.second-env }}"
+      - name: Print GitHub Env
+        run: echo "${{ env.FIRST_SECRET }}"
+      - name: Print GitHub Env
+        run: echo "${{ secrets.FIRST_SECRET }}"
