@@ -48,7 +48,8 @@ jobs:
             - name: Install Dependencies
               run: npm ci
             - name: Build Project
-              run: npm run build
+              id: build_success
+              run: npm run builds
             - name: Fetch Output
               run: echo "${{ needs.test.outputs.output-example }}"
             # - name: Download Artifact
@@ -56,4 +57,5 @@ jobs:
             #   with:
             #     name: dist
             - name: Deploy
+              if: ${{ steps.build_success.outcome == 'failure' }}
               run: echo "Deploying Code"
