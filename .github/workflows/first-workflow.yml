@@ -15,7 +15,7 @@ jobs:
       matrix:
         runs-on: [ubuntu-latest, windows-latest]
         exclude:
-          - runs-on: [windows-latest]
+          - runs-on: windows-latest
     environment: test
     env: 
       FIRST_SECRET: "${{ vars.TESTVARIABLE }}"
