@@ -57,5 +57,5 @@ jobs:
             #   with:
             #     name: dist
             - name: Deploy
-              if: ${{ steps.build_success.outcome == 'failure' }}
+              if: failure() && ${{ steps.build_success.outcome == 'failure' }}
               run: echo "Deploying Code"
